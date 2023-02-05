@@ -1,23 +1,40 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Outlet,
+  Link,
+  createRoutesFromElements,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Feeds from "./components/Feeds";
+import Feed from "./components/Feeds/Feed";
+import { loader } from "./components/Feeds/Feed/loader";
 
-export default function App() {
-  return (
-    <Routes>
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Main />}>
       <Route path="/feeds" element={<Feeds />}>
-        <Route index element={<Home />} />
-        <Route path="/feeds/:feedUrl" element={<About />} />
-        <Route path="*" element={<NoMatch />} />
+        <Route index element={<About />} />
+        <Route path="/feeds/:feedUrl" element={<Feed />} loader={loader} />
       </Route>
       <Route path="/feeds/:feedUrl/:articleUrl" element={<Dashboard />} />
-    </Routes>
-  );
+    </Route>
+  )
+);
+
+export default function App() {
+  return <RouterProvider router={router} fallbackElement={<Fallback />} />;
 }
 
-function Home() {
+function Main() {
+  return <Outlet />;
+}
+
+function Fallback() {
   return (
     <div>
-      <h2>Home</h2>
+      <h2>Fallback</h2>
     </div>
   );
 }

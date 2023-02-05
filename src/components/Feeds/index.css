@@ -1,0 +1,45 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Feeds {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.Feeds a {
+  color: var(--colorFront);
+  text-decoration: none;
+}
+
+.Feeds__list {
+  flex-direction: column;
+  flex-basis: 40%;
+  display: flex;
+  background: var(--colorBgGrey);
+  overflow-y: scroll;
+}
+
+.Feeds_list_item-active {
+  background: var(--colorBackground);
+  padding: 0.2em;
+}
+
+.Feeds_list_item {
+  background: var(--colorBgGrey);
+  padding: 0.2em;
+}
+
+.Feeds__content {
+  flex-basis: 60%;
+  overflow-y: scroll;
+  padding: 1em;
+}
